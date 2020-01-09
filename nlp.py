@@ -32,4 +32,16 @@ for i in range(dataset.shape[0]):
     #print(review)
     corpus.append(review)
 
-print(corpus)
+# Creating the bag of words model
+# sparce matrix of words included in the reviews ( columns : words, rows : reviews )
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+cv = CountVectorizer(max_features=1500) # only 1500 words
+X = cv.fit_transform(corpus).toarray()
+print(X)
+
+y = dataset.iloc[:,1].values
+X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0)
+
+# Fitting Random Forest Classifier to the training set
+from sklearn impo
